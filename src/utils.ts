@@ -1,5 +1,8 @@
 import fs from "fs"
 
+export type s = string
+export type n = number
+
 export const read = (name: string) => {
   return fs.readFileSync("./data/" + name + ".txt", "utf8")
 }
