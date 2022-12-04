@@ -18,8 +18,9 @@ const alphaScore = (c: string) => {
   return "abcdefghijklmnopqrstuvwxyz".indexOf(c.toLowerCase()) + isUpper + 1
 }
 
-const triplets = (_: string, i: number, xs: string[]) => {
-  return (i + 1) % 3 == 0 ? [xs[i - 2], xs[i - 1], _] : []
+const triplets = (acc: string[][], _: string, i: number, xs: string[]) => {
+  if ((i + 1) % 3 == 0) acc.push([xs[i - 2], xs[i - 1], _])
+  return acc
 }
 
 const res3_1 = d3
@@ -31,8 +32,7 @@ const res3_1 = d3
 
 const res3_2 = d3
   .split("\n")
-  .map(triplets)
-  .filter(x => x.length)
+  .reduce(triplets, [])
   .map(findMatch)
   .map(alphaScore)
   .reduce(sum)
