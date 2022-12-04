@@ -33,7 +33,6 @@ const res3_2 = d3
   .split("\n")
   .map(triplets)
   .filter(x => x.length)
-  .map(log)
   .map(findMatch)
   .map(alphaScore)
   .reduce(sum)
