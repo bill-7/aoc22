@@ -19,18 +19,12 @@ const anyOverlap = ([a, b]: n[][]) => {
   return a.some(x => b.includes(x)) || b.some(y => a.includes(y))
 }
 
-const res4_1 = d4
-  .split("\n")
-  .map(x => x.split(","))
-  .map(x => x.map(completeRange))
-  .filter(fullOverlap).length
+const res = (f: ([a, b]: n[][]) => boolean) =>
+  d4
+    .split("\n")
+    .map(x => x.split(","))
+    .map(x => x.map(completeRange))
+    .filter(f).length
 
-const res4_2 = d4
-  .split("\n")
-  .map(x => x.split(","))
-  .map(x => x.map(completeRange))
-  .filter(anyOverlap).length
-
-console.log(res4_1)
-
-console.log(res4_2)
+console.log(res(fullOverlap))
+console.log(res(anyOverlap))
