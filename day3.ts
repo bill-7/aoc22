@@ -2,9 +2,7 @@ import { log, read, sum } from "./utils"
 
 const d3 = read("./day3.txt")
 
-type Stringers = [string, string]
-
-const twoHalves = (s: string): Stringers => [
+const twoHalves = (s: string) => [
   s.slice(0, s.length / 2),
   s.slice(s.length / 2),
 ]

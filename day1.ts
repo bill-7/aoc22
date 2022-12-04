@@ -1,9 +1,6 @@
-import fs from "fs"
+import { read, sum, num } from "./utils"
 
-const d1 = fs.readFileSync("/home/bill/code/aoc/day1.txt", "utf8") as string
-
-const sum = (a: number, b: number) => a + b
-const num = (s: string) => parseInt(s)
+const d1 = read("./day1.txt")
 
 const totals = d1
   .split("\n")
