@@ -1,6 +1,6 @@
 import { log, read, sum } from "./utils"
 
-const d3 = read("./day3.txt")
+const d3 = read("day3")
 
 const twoHalves = (s: string) => [
   s.slice(0, s.length / 2),

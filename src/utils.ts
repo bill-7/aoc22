@@ -1,6 +1,8 @@
 import fs from "fs"
 
-export const read = (path: string) => fs.readFileSync(path, "utf8")
+export const read = (name: string) => {
+  return fs.readFileSync("./data/" + name + ".txt", "utf8")
+}
 
 export const sum = (a: number, b: number) => a + b
 

@@ -1,6 +1,6 @@
 import { read, sum, num } from "./utils"
 
-const d1 = read("./day1.txt")
+const d1 = read("day1")
 
 const totals = d1
   .split("\n")
@@ -18,4 +18,5 @@ const res1_2 = totals
   .slice(0, 3)
   .reduce(sum)
 
-console.log(res1_1, res1_2)
+console.log(res1_1)
+console.log(res1_2)

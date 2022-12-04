@@ -1,6 +1,6 @@
-import fs from "fs"
+import { read, sum } from "./utils"
 
-const d2 = fs.readFileSync("./day2.txt", "utf8") as string
+const d2 = read("day2")
 
 type Game = ["A" | "B" | "C", "X" | "Y" | "Z"]
 
@@ -15,18 +15,18 @@ const getScore = ([cha, res]: Game) => {
   }
 }
 
-const res = (f: (g: Game) => number) =>
-  d2
-    .split("\n")
-    .map(x => x.split(" ") as Game)
-    .map(f)
-    .reduce((a, b) => a + b)
-
 const getScore2 = ([cha, res]: Game) => {
   const resScore = res == "X" ? 0 : res == "Y" ? 3 : 6
   const bonus = 1 //cha == "A" ? 1 : cha == "B" ? 2 : 3
   return resScore + bonus
 }
+
+const res = (f: (g: Game) => number) =>
+  d2
+    .split("\n")
+    .map(x => x.split(" ") as Game)
+    .map(f)
+    .reduce(sum)
 
 console.log(res(getScore))
 console.log(res(getScore2))
