@@ -12,3 +12,5 @@ export const log = <T>(x: T) => {
   console.log(x)
   return x
 }
+
+export const voidLog = <T>(x: T) => console.log(x)
