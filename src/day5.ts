@@ -1,4 +1,4 @@
-import { num, read, voidLog } from "./utils"
+import { num, read } from "./utils"
 
 const d5 = read("day5")
 
@@ -19,9 +19,9 @@ const execute = (s: State, m: Mutation) => {
   return s
 }
 
-const perform = (s: State, mutations: Mutation[]): State => {
-  if (mutations.length == 0) return state
-  return perform(execute(s, mutations.pop()!), mutations)
+const perform = (s: State, ms: Mutation[]): State => {
+  if (ms.length == 0) return state
+  return perform(execute(s, ms.pop()!), ms)
 }
 
 const state = init[init.length - 1].split("").reduce((acc, c, i) => {
