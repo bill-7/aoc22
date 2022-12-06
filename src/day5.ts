@@ -9,10 +9,19 @@ const [init, ops] = d5.split("\n\n").map(x => x.split("\n"))
 
 const isChar = (x: string) => !num(x) && x != " "
 
-const convert = (s: string): Mutation[] => {
+const convert9000 = (s: string): Mutation[] => {
   const [, n, , src, , des] = s.split(" ").map(num)
   return new Array(n).fill({ src: src - 1, des: des - 1 })
 }
+
+type Mutation9001 = { n: number; src: number; des: number }
+
+const convert9001 = (s: string): Mutation9001 => {
+  const [, n, , src, , des] = s.split(" ").map(num)
+  return { n, src: src - 1, des: des - 1 }
+}
+
+// 5.1 TODO: refactor such that { n: 1, src, ses}. Default should be 5.2
 
 const execute = (s: State, m: Mutation) => {
   s[m.des].push(s[m.src].pop()!)
@@ -35,7 +44,7 @@ const state = init[init.length - 1].split("").reduce((acc, c, i) => {
   return acc
 }, [] as State)
 
-const muts = ops.flatMap(convert).reverse()
+const muts = ops.flatMap(convert9000).reverse()
 
 const res1_1 = perform(state, muts)
   .map(x => x.pop())
