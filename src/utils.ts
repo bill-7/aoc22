@@ -4,6 +4,10 @@ export const read = (name: string) => {
   return fs.readFileSync("./data/" + name + ".txt", "utf8")
 }
 
+export const uniq = <T>(x: T, i: number, xs: T[]) => {
+  return !xs.slice(i + 1).includes(x)
+}
+
 export const sum = (a: number, b: number) => a + b
 
 export const num = (s: string) => parseInt(s)
