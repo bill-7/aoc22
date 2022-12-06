@@ -9,9 +9,9 @@ const [init, ops] = d5.split("\n\n").map(x => x.split("\n"))
 
 const isChar = (x: string) => !num(x) && x != " "
 
-const convert9000 = (s: string): Mutation[] => {
-  const [, n, , src, , des] = s.split(" ").map(num)
-  return new Array(n).fill({ src: src - 1, des: des - 1 })
+const convert = (s: string): Mutation[] => {
+  const [, n, , from, , to] = s.split(" ").map(num)
+  return new Array(n).fill({ src: from - 1, des: to - 1 })
 }
 
 type Mutation9001 = { n: number; src: number; des: number }
