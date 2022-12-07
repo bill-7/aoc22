@@ -44,22 +44,16 @@ const state = init[init.length - 1].split("").reduce((acc, c, i) => {
   return acc
 }, [] as State)
 
-const state2 = [...state]
-
 const muts = ops.flatMap(convert9000).reverse()
-// console.log(muts)
+const muts2 = ops.map(convert9001).reverse()
 
 const res5_1 = perform(state, muts)
   .map(x => x.pop())
   .join("")
 
-console.log(res5_1)
-
-const muts2 = ops.map(convert9001).reverse()
-// console.log(muts2)
-
-const res5_2 = perform(state2, muts2)
+const res5_2 = perform(state, muts2)
   .map(x => x.pop())
   .join("")
 
-console.log(res5_2)
+console.log(res5_1)
+console.log(res5_2) //TODO: why is this wrong??
