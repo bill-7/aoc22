@@ -9,9 +9,9 @@ const [init, ops] = d5.split("\n\n").map(x => x.split("\n"))
 
 const isChar = (x: string) => !num(x) && x != " "
 
-const convert = (s: string): Mutation[] => {
-  const [, n, , from, , to] = s.split(" ").map(num)
-  return new Array(n).fill({ src: from - 1, des: to - 1 })
+const convert9000 = (s: string): Mutation9001[] => {
+  const [, n, , src, , des] = s.split(" ").map(num)
+  return new Array(n).fill({ n: 1, src: src - 1, des: des - 1 })
 }
 
 type Mutation9001 = { n: number; src: number; des: number }
@@ -21,14 +21,14 @@ const convert9001 = (s: string): Mutation9001 => {
   return { n, src: src - 1, des: des - 1 }
 }
 
-// 5.1 TODO: refactor such that { n: 1, src, ses}. Default should be 5.2
-
-const execute = (s: State, m: Mutation) => {
-  s[m.des].push(s[m.src].pop()!)
+const execute = (s: State, m: Mutation9001) => {
+  const dest = s[m.des]
+  for (let i = 0; i < m.n; i++) dest.push(s[m.src].pop()!)
+  s[m.des] = dest
   return s
 }
 
-const perform = (s: State, ms: Mutation[]): State => {
+const perform = (s: State, ms: Mutation9001[]): State => {
   if (ms.length == 0) return state
   return perform(execute(s, ms.pop()!), ms)
 }
@@ -44,10 +44,22 @@ const state = init[init.length - 1].split("").reduce((acc, c, i) => {
   return acc
 }, [] as State)
 
-const muts = ops.flatMap(convert9000).reverse()
+const state2 = [...state]
 
-const res1_1 = perform(state, muts)
+const muts = ops.flatMap(convert9000).reverse()
+// console.log(muts)
+
+const res5_1 = perform(state, muts)
   .map(x => x.pop())
   .join("")
 
-console.log(res1_1)
+console.log(res5_1)
+
+const muts2 = ops.map(convert9001).reverse()
+// console.log(muts2)
+
+const res5_2 = perform(state2, muts2)
+  .map(x => x.pop())
+  .join("")
+
+console.log(res5_2)
