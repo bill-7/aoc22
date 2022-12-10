@@ -2,33 +2,32 @@ import { num, read, sum } from "./utils"
 
 const d8 = read("8test")
 
-//for each side
-//for each row
-//index 0 counts
-//find all trees greater than i=0
+const init = d8.split("\n").map(r => r.split("").map(num))
 
-const trees = d8.split("\n").map(r => r.split("").map(num))
-
-type Coord = { i: number; j: number }
+type Coord = { i: number; j: number; n: number }
+type Trees = number[][]
 
 const coords: Coord[] = []
 
-const left = trees.map(row => {
-  return row.filter((t, i) => row.slice(0, i).every(x => x < t))
-})
-
-left.forEach((rowMatches, i) =>
-  rowMatches.forEach(t => {
-    coords.push({ i, j: trees[i].indexOf(t) }) //big assumption that first occurance is correct (is this provable?)
+const look = (trees: Trees, unwind = 0) =>
+  trees.forEach((row, i) => {
+    row.forEach((tree, j) => {
+      if (row.slice(0, j).every(x => x < tree)) update(i, j, tree, unwind)
+    })
   })
-)
 
-const rotated = trees.reduceRight((acc, _, i) => {
-  acc.push(trees.map(row => row[i]))
-  return acc
-}, [] as number[][])
+const crank90 = (trees: Trees) => {
+  return trees.reduceRight((acc, _, i) => {
+    acc.push(trees.map(row => row[i]))
+    return acc
+  }, [] as Trees)
+}
 
-console.log(trees)
-// console.log(left)
-// console.log(coords)
-console.log(rotated)
+const rotate = (trees: Trees, n = 0): Trees => {
+  if (n == 0) return trees
+  return rotate(crank90(trees), n - 1)
+}
+
+console.log(init)
+console.log(coords)
+console.log(rotate(init, 1))
