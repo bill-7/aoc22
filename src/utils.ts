@@ -18,3 +18,15 @@ export const log = <T>(x: T) => {
 }
 
 export const voidLog = <T>(x: T) => console.log(x)
+
+const crank90 = <T>(xss: T[][]) => {
+  return xss.reduceRight((acc, _, i) => {
+    acc.push(xss.map(row => row[i]))
+    return acc
+  }, [] as T[][])
+}
+
+// const rotate = (trees: Trees, n = 0): Trees => {
+//   if (n == 0) return trees
+//   return rotate(crank90(trees), n - 1)
+// }
