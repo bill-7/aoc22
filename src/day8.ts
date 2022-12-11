@@ -15,8 +15,6 @@ const res8_1 = init.reduce((acc, row, i) => {
   return acc + hits.length
 }, 0)
 
-console.log(init)
-
 const res8_2 = init.reduce((acc, row, i) => {
   const hits = Math.max(
     ...row.map((t, j) => {
@@ -42,4 +40,5 @@ const res8_2 = init.reduce((acc, row, i) => {
   return Math.max(hits, acc)
 }, 0)
 
+console.log(res8_1)
 console.log(res8_2)
